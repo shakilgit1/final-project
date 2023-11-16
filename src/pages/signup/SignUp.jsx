@@ -3,11 +3,15 @@ import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { AuthContext } from "../../authProvider/AuthProvider";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import GoogleLogin from "../../components/socialLogin/GoogleLogin";
 
 const SignUp = () => {
+    const axiosPublic = useAxiosPublic();
     const {createUser, updateUserProfile} = useContext(AuthContext)
     const navigate = useNavigate();
-  const {
+
+   const {
     register,
     handleSubmit,
     reset,
@@ -15,22 +19,34 @@ const SignUp = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     createUser(data.email, data.password)
     .then((result)=>{
         const loggedUser = result.user;
         console.log(loggedUser);
         updateUserProfile(data.name, data.photoURL)
         .then(() => {
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "user created successfully",
-            showConfirmButton: false,
-            timer: 1500
-          });
-          reset()
-          navigate('/');
+          const userInfo = {
+             name: data.name,
+             email: data.email
+          }
+
+          axiosPublic.post(`/user`, userInfo)
+          .then(res => {
+            if(res.data.insertedId){
+              console.log('user added to database');
+              reset();
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "user created successfully",
+                showConfirmButton: false,
+                timer: 1500
+              }); 
+              navigate('/');
+            }
+          })
+         
         })
         .catch(err => {
           console.log(err);
@@ -136,6 +152,7 @@ const SignUp = () => {
               </button>
             </div>
           </form>
+          <GoogleLogin></GoogleLogin>
           <p className="text-center mb-4">
             Already have?
             <Link className="ml-2 text-orange-500 font-bold" to="/login">

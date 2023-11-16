@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate} from 'react-router-dom';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../authProvider/AuthProvider';
 import Swal from 'sweetalert2';
+import GoogleLogin from '../../components/socialLogin/GoogleLogin';
 
 const Login = () => {
 
@@ -127,6 +128,9 @@ const Login = () => {
               <button name='submit' type='submit' disabled={false} className="btn btn-primary">Login</button>
             </div>
           </form>
+           <div>
+            <GoogleLogin></GoogleLogin>
+           </div>
           <p className="text-center mb-4">New to here?<Link className='ml-2 text-orange-500 font-bold' to="/signup">Sign Up</Link></p>
         </div>
       </div>

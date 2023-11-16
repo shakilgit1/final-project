@@ -1,7 +1,10 @@
-import { FaAd, FaCalendar, FaHome, FaList, FaShopify, FaShoppingCart } from "react-icons/fa";
+import { FaAd, FaCalendar, FaEnvelope, FaHome, FaList, FaShopify, FaShoppingCart } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
+    // get isAdmin value from the database
+    // const isAdmin = true;
+
     return (
         <div className="flex">
            <div className="min-h-screen w-64 bg-orange-500">
@@ -32,14 +35,20 @@ const Dashboard = () => {
                       My Bookings
                     </NavLink>
                 </li>
+                {/* shared navLink */}
                 <div className="divider"></div>
                 <li><NavLink to="/">
                     <FaHome></FaHome>
                     Home</NavLink>
                 </li>
-                <li><NavLink to="/menu">
+                <li><NavLink to="/order/salad">
                     <FaShopify></FaShopify>
                     Menu</NavLink>
+                </li>
+                {/*  */}
+                <li><NavLink to="/contact">
+                    <FaEnvelope></FaEnvelope>
+                    Contact</NavLink>
                 </li>
              </ul>
             </div>
