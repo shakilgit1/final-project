@@ -1,15 +1,47 @@
-import { FaAd, FaCalendar, FaEnvelope, FaHome, FaList, FaShopify, FaShoppingCart } from "react-icons/fa";
+import { FaAd, FaBook, FaCalendar, FaEnvelope, FaHome, FaList, FaShopify, FaShoppingCart,FaUsers,  FaUtensils } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
     // get isAdmin value from the database
-    // const isAdmin = true;
+    const [isAdmin] = useAdmin();
 
     return (
         <div className="flex">
            <div className="min-h-screen w-64 bg-orange-500">
              <ul className="menu">
-                <li><NavLink to="/dashboard/userHome">
+                {
+                  isAdmin? <>
+                  <li><NavLink to="/dashboard/adminHome">
+                    <FaHome></FaHome>
+                    Admin Home</NavLink>
+                </li>
+                <li><NavLink to="/dashboard/addItems">
+                    <FaUtensils></FaUtensils>
+                    Add Items</NavLink>
+                </li>
+                <li><NavLink to="/dashboard/manageItems">
+                     <FaList></FaList>
+                     Mange Items
+                    </NavLink>
+                </li>
+              
+                <li>
+                    <NavLink to="/dashboard/bookings">
+                    <FaBook></FaBook>
+                    Manage Bookings
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="/dashboard/users">
+                     <FaUsers></FaUsers>
+                      All Users
+                    </NavLink>
+                </li>
+                  </> 
+                  : 
+                  <>
+                  <li><NavLink to="/dashboard/userHome">
                     <FaHome></FaHome>
                     User Home</NavLink>
                 </li>
@@ -35,6 +67,8 @@ const Dashboard = () => {
                       My Bookings
                     </NavLink>
                 </li>
+                  </>
+                }
                 {/* shared navLink */}
                 <div className="divider"></div>
                 <li><NavLink to="/">

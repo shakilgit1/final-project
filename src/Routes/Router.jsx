@@ -11,6 +11,7 @@ import PrivetRoutes from "../pages/PrivetRoutes/PrivetRoutes";
 import Secret from "../pages/secret/Secret";
 import Dashboard from "../layout/Dashboard";
 import MyCart from "../pages/dashboard/MyCart";
+import AllUsers from "../pages/dashboard/allUsers/AllUsers";
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +51,11 @@ export const router = createBrowserRouter([
       {
         path: 'cart',
         element: <MyCart></MyCart>
+      },
+      // admin 
+      {
+        path: 'users',
+        element: <AllUsers></AllUsers>
       }
     ]
   }
