@@ -43,8 +43,8 @@ const Navbar = () => {
 
       {user ? (
         <>
-          {" "}
-          <span>{user?.displayName}</span>
+          
+          <span className="flex items-center mr-2">{user?.displayName}</span>
           <button onClick={handleLogOut} className="btn btn-sm">
             Log Out
           </button>
@@ -95,7 +95,7 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{navOptions}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          <a className="btn btn-md">Get Started</a>
         </div>
       </div>
     </div>

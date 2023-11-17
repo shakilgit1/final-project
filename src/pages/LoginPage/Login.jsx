@@ -14,7 +14,7 @@ const Login = () => {
     // console.log(location);
 
     const from = location.state?.from?.pathname || "/";
-    console.log(location.state);
+    // console.log(location.state);
     
     const handleLogin = e =>{
       e.preventDefault();
